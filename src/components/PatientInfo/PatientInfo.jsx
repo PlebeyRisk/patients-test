@@ -1,19 +1,31 @@
 import React from 'react';
 import './PatientInfo.scss';
 
-const PatientInfo = () => {
+import { getFullYear } from '../../utils';
+
+const PatientInfo = ({ data }) => {
+  let fio = null;
+  let age = null;
+  let diagnosis = null;
+
+  if (data) {
+    fio = `${data.lastName} ${data.firstName} ${data.patrName}`;
+    age = getFullYear(data.birthDate);
+    diagnosis = data.diagnosis;
+  }
+
   return (
     <div className="patientInfo">
-      <div className="header">
+      <div className="patientInfo-header">
         <span>Информация о пациенте</span>
         <button className="resizeButton">
           <span className="resizeButton__icon"></span>
         </button>
       </div>
-      <div className="body">
-        <InfoItem name="ФИО" value="Степанов Игорь Васильевич" />
-        <InfoItem name="Возраст" value="Игорь Васильевич" />
-        <InfoItem name="Диагноз" value="Васильевич" />
+      <div className="patientInfo-body">
+        <InfoItem name="ФИО" value={fio} />
+        <InfoItem name="Возраст" value={age} />
+        <InfoItem name="Диагноз" value={diagnosis} />
       </div>
     </div>
   );

@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Main.scss';
 
+import TabViewContainer from '../TabView/TabViewContainer';
 import PatientInfo from '../PatientInfo/PatientInfo';
-import PatientsList from '../PatientsList/PatientsList';
 
 const Main = () => {
+  const [activePatient, setActivePatient] = useState(null);
+
   return (
     <div className="main">
-      <PatientInfo />
-      <PatientsList />
+      <PatientInfo data={activePatient} />
+      <TabViewContainer activePatient={activePatient} setActivePatient={setActivePatient} />
     </div>
   );
 };

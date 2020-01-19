@@ -1,15 +1,27 @@
+@import 'constants/colors.scss';
+
 html {
   font-size: 12px;
+  color: $darkColor;
 }
 
 div {
   box-sizing: border-box;
 }
 
+button {
+  outline: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .App {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 300px;
+  height: 100vh;
   padding: 15px;
-  background-color: #dcdcdc;
+  background-color: $grayColor;
 }
