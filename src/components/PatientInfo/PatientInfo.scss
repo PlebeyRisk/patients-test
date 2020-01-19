@@ -8,6 +8,30 @@
   margin-right: 15px;
   min-width: 300px;
   border: 1px solid $baseColor;
+  transition: all 0.3s ease-in-out;
+
+  &._collapse {
+    min-width: 40px;
+    flex: 0 0;
+    transition: all 0.3s ease-in-out;
+
+    &>.patientInfo-header {
+      padding-left: 0;
+
+      &>.patientInfo__title {
+        display: none;
+      }
+
+      &>.resizeButton>.resizeButton__icon {
+        transform: rotate(180deg);
+        transition: all 0.2s ease-in-out;
+      }
+    }
+
+    &>.patientInfo-body {
+      display: none;
+    }
+  }
 }
 
 .patientInfo-header {
@@ -28,6 +52,10 @@
   height: 40px;
   border: none;
   background-color: transparent;
+
+  &:active {
+    opacity: 0.8;
+  }
 }
 
 .resizeButton__icon {
@@ -36,10 +64,14 @@
   height: 13px;
   background: url("../../assets/img/icons/back.svg") center no-repeat;
   background-size: cover;
+  transform: rotate(0deg);
+  transition: all 0.2s ease-in-out;
 }
 
 .patientInfo-body {
   padding: 10px;
+  transition: all 0.3s ease-in-out;
+  transition-delay: 0.3s;
 }
 
 .infoItem {

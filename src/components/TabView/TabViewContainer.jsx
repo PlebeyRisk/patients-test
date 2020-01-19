@@ -1,35 +1,26 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 
 import TabView from './TabView';
 
-import api from '../../api/api';
 import { tabsData, tableHeaderData } from '../../constants';
+import appSelectors from '../../redux/selectors/appSelectors';
+import { fetchPresentPatients, fetchQuittingPatients } from '../../redux/thunks';
+import { setActivePatient } from '../../redux/actions';
 
-const TabViewContainer = ({ setActivePatient, activePatient }) => {
+const TabViewContainer = ({
+  fetchPresentPatients,
+  fetchQuittingPatients,
+  setActivePatient,
+  activePatient,
+  present,
+  quitting,
+}) => {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
 
-  const [present, setPresent] = useState(null);
-  const [quitting, setQuitting] = useState(null);
-
-  const loadPresent = async () => {
-    let data = await api.getPresent();
-
-    if (data) {
-      setPresent(data);
-    }
-  };
-
-  const loadQuitting = async () => {
-    let data = await api.getQuitting();
-
-    if (data) {
-      setQuitting(data);
-    }
-  };
-
   useEffect(() => {
-    loadPresent();
-    loadQuitting();
+    fetchPresentPatients();
+    fetchQuittingPatients();
   }, []);
 
   return (
@@ -46,4 +37,19 @@ const TabViewContainer = ({ setActivePatient, activePatient }) => {
   );
 };
 
-export default TabViewContainer;
+let mapStateToProps = state => {
+  const { getActivePatient, getPresentPatients, getQuittingPatients } = appSelectors;
+  return {
+    activePatient: getActivePatient(state),
+    present: getPresentPatients(state),
+    quitting: getQuittingPatients(state),
+  };
+};
+
+let mapDispatchToProps = {
+  fetchPresentPatients,
+  fetchQuittingPatients,
+  setActivePatient,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TabViewContainer);

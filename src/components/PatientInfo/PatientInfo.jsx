@@ -3,7 +3,11 @@ import './PatientInfo.scss';
 
 import { getFullYear } from '../../utils';
 
-const PatientInfo = ({ data }) => {
+const PatientInfo = ({ data, setCollapseMode, collapseMode }) => {
+  const toggleCollapseMode = () => {
+    setCollapseMode(!collapseMode);
+  };
+
   let fio = null;
   let age = null;
   let diagnosis = null;
@@ -15,10 +19,10 @@ const PatientInfo = ({ data }) => {
   }
 
   return (
-    <div className="patientInfo">
+    <div className={`patientInfo${collapseMode ? ' _collapse' : ''}`}>
       <div className="patientInfo-header">
-        <span>Информация о пациенте</span>
-        <button className="resizeButton">
+        <span className="patientInfo__title">Информация о пациенте</span>
+        <button className="resizeButton" onClick={toggleCollapseMode}>
           <span className="resizeButton__icon"></span>
         </button>
       </div>
