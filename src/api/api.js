@@ -1,7 +1,7 @@
 import * as axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'http://my-json-server.typicode.com/PlebeyRisk/test-server/',
+  baseURL: 'https://my-json-server.typicode.com/PlebeyRisk/test-server/',
 });
 
 const getPresent = () => {
