@@ -1,4 +1,84 @@
+@import '../../constants/colors.scss';
+
 .main {
   display: flex;
   height: 100%;
+}
+
+.slider {
+  padding: 0;
+  width: 15px;
+  height: 100%;
+  border: none;
+  background-color: transparent;
+
+  &:hover {
+    cursor: move;
+  }
+
+  &>span {
+    display: block;
+    padding-bottom: 8px;
+    font-size: 17px;
+    color: $grayTextColor;
+    transform: rotate(90deg);
+  }
+}
+
+.leftBlock,
+.rightBlock {
+  display: flex;
+  flex: 1 0;
+  background-color: $lightColor;
+  overflow: hidden;
+}
+
+.leftBlock {
+  position: relative;
+  min-width: 40px;
+  border: 1px solid $baseColor;
+  transition: flex 0.3s ease-in-out;
+
+  &._collapse {
+    flex: 0 0;
+    transition: flex 0.3s ease-in-out;
+
+    &>.collapseButton {
+
+      &>.collapseButton__icon {
+        transform: rotate(180deg);
+        transition: all 0.4s ease-in-out;
+      }
+    }
+  }
+}
+
+.rightBlock {
+  min-width: 400px;
+}
+
+.collapseButton {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 38px;
+  height: 40px;
+  border: none;
+  background-color: $baseColor;
+
+  &:active {
+    opacity: 0.8;
+  }
+}
+
+.collapseButton__icon {
+  display: block;
+  width: 13px;
+  height: 13px;
+  background: url("../../assets/img/icons/back.svg") center no-repeat;
+  background-size: cover;
+  transform: rotate(0deg);
+  transition: all 0.4s ease-in-out;
 }

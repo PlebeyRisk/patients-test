@@ -2,9 +2,8 @@
 
 .tabView {
   display: flex;
-  flex: 1 1;
   flex-direction: column;
-  min-width: 500px;
+  width: 100%;
   border: 1px solid $borderColor2;
   background-color: $lightColor;
 }

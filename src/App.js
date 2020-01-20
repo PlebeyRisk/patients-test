@@ -1,12 +1,12 @@
 import React from 'react';
 
 import './App.scss';
-import Main from './components/Main/Main';
+import MainContainer from './components/Main/MainContainer';
 
 function App() {
   return (
     <div className="App">
-      <Main/>
+      <MainContainer/>
     </div>
   );
 }
